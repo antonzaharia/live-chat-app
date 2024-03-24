@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
 
+  validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 4 }
 
@@ -39,5 +40,9 @@ class User < ApplicationRecord
 
   after_update if: :password_digest_previously_changed? do
     sessions.where.not(id: Current.session).delete_all
+  end
+
+  def icon_text
+    name.first.upcase
   end
 end
