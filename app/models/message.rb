@@ -18,6 +18,9 @@ class Message < ApplicationRecord
 
   validates :content, presence: true
 
+  scope :with_user, ->{ includes(:user) }
+  scope :ordered, ->{ order(created_at: :desc) }
+
   def broadcast_created
     broadcast_prepend_to(
       dom_id(chat, :messages),

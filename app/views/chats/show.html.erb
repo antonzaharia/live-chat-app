@@ -6,7 +6,7 @@
   <%= turbo_stream_from dom_id(@chat, :messages) %>
 
   <%= turbo_frame_tag dom_id(@chat, :messages) do %>
-    <% @chat.messages.order(created_at: :desc).each do |message| %>
+    <% @chat.messages.ordered.with_user.each do |message| %>
       <%= render partial: 'messages/message', locals: { message: message } %>
     <% end %>
   <% end %>
