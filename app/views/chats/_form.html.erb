@@ -1,0 +1,55 @@
+<div class="w-full rounded-lg py-2 pb-4 rounded-b-none">
+  <%= form_for chat, class: "relative w-full" do |form| %>
+    <% if form.object.errors.any? %>
+      <div class="flex flex-col gap-1 mt-3">
+        <% form.object.errors.each do |error| %>
+          <div class="alert alert-error shadow-lg flex-col text-sm p-3 rounded-lg">
+            <%= error.full_message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form.label :name, class: "label" do %>
+      Name
+    <% end %>
+    <%= form.text_field :name, placeholder: "Topic", class: "shadow input w-full placeholder:text-grey-100 text-grey-100" %>
+
+    <%= form.fields_for :user_chats do |user_chats_form| %>
+      <div data-controller="multiple-select">
+        <%= user_chats_form.label :user_id, class: "label" do %>
+          Add Users
+        <% end %>
+        <%= user_chats_form.collection_select :user_id,
+          User.all.where.not(id: Current.user.id),
+          :id,
+          :email,
+          {
+            include_hidden: false,
+            prompt: "Select at least one user"
+          },
+          {
+            multiple: true,
+            data: { "multiple-select-target": "select" },
+            name: 'chat[user_chats_attributes][][user_id]'
+          }
+        %>
+      </div>
+    <% end %>
+
+    <div class="w-full flex gap-3 mt-5">
+      <%= form.fields_for :messages do |message_form| %>
+        <%= message_form.text_field :content, placeholder: "Hello!", class: "shadow input w-full placeholder:text-grey-100 text-grey-100" %>
+        <%= message_form.hidden_field :user_id, value: Current.user.id %>
+      <% end %>
+    </div>
+
+    <div class="w-full flex justify-end mt-3">
+      <%= form.button(type: 'submit', class: "shadow-lg btn btn-dark") do %>
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.9472 9.3944C16.286 9.225 16.5 8.8788 16.5 8.5C16.5 8.12124 16.286 7.77498 15.9472 7.60558L1.9472 0.605582C1.5925 0.428232 1.1665 0.477242 0.861401 0.730502C0.556201 0.983762 0.429501 1.39342 0.5385 1.77473L1.967 6.77472C2.0897 7.20402 2.4821 7.5 2.9286 7.5H7.5C8.0523 7.5 8.5 7.94772 8.5 8.5C8.5 9.0523 8.0523 9.5 7.5 9.5L2.9286 9.5C2.4821 9.5 2.0897 9.796 1.967 10.2253L0.5385 15.2253C0.429501 15.6066 0.556201 16.0163 0.861401 16.2695C1.1665 16.5228 1.5925 16.5718 1.9472 16.3944L15.9472 9.3944Z" fill="white"/>
+        </svg>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
