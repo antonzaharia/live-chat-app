@@ -16,6 +16,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^16.1.0",
     "postcss-nested": "^6.0.1",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "tom-select": "^2.3.1"
   }
 }
