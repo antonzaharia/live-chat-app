@@ -13,6 +13,8 @@
   </head>
 
   <body class="container mx-auto">
+    <%= turbo_frame_tag "modal" %>
+
     <%= render partial: "shared/navbar" %>
     <%= yield %>
   </body>
