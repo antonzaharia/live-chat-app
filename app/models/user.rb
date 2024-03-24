@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :user_chats
   has_many :chats, through: :user_chats
+  has_many :sessions, dependent: :destroy
 
   has_secure_password
 
@@ -24,9 +25,6 @@ class User < ApplicationRecord
   generates_token_for :password_reset, expires_in: 20.minutes do
     password_salt.last(10)
   end
-
-
-  has_many :sessions, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
