@@ -25,4 +25,15 @@ class MessageTest < ActiveSupport::TestCase
     message = Message.new(content: "Test Content", user: @user, chat: @chat)
     assert_respond_to message, :chat
   end
+
+  test "same_user_as method should return true for same user" do
+    message = Message.new(content: "Test Content", user: @user, chat: @chat)
+    assert message.same_user_as(@user)
+  end
+
+  test "same_user_as method should return false for different user" do
+    other_user = users(:jim)
+    message = Message.new(content: "Test Content", user: @user, chat: @chat)
+    assert_not message.same_user_as(other_user)
+  end
 end
