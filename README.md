@@ -1,5 +1,30 @@
 # Live Chat App
 
+## Prerequisites
+- Ruby 3.3.0
+- Bundler 2.5.5 or higher
+- Install Bun [Bun docs](https://bun.sh/docs/installation)
+- PostgreSQL
+## Get started locally
+1. Clone this repo
+```bash
+git clone git@github.com:antonzaharia/live-chat-app.git
+cd live-chat-app
+```
+2. Install dependencies
+```bash
+bundle install && bun install
+```
+3. Prepare Database
+```bash
+bin/rails db:create && bin/rails db:migrate
+```
+4. Start the server
+```bash
+bin/dev
+```
+And visit [http://localhost:3000](http://localhost:3000)
+
 ## TODO
 - [x] Users should be able to sign up and be authenticated
 - [x] Users should have a display name
