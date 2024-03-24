@@ -1,0 +1,49 @@
+<div class="navbar bg-base-100">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-primary">
+        <li>
+          <%= link_to "Dashboard", root_path %>
+        </li>
+        <p class="text-xs mt-3 opacity-30">Login and verification</p>
+        <hr class="opacity-30"/>
+        <li>
+          <%= link_to "Change password", edit_password_path %>
+        </li>
+        <li>
+          <%= link_to "Change email address", edit_identity_email_path %>
+        </li>
+        <p class="text-xs mt-3 opacity-30">Access history</p>
+        <hr class="opacity-30"/>
+        <li>
+          <%= link_to "Devices & Sessions", sessions_path %>
+        </li>
+
+        <br>
+        <hr class="opacity-30"/>
+        <li>
+          <%= button_to "Log out", Current.session, method: :delete %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="navbar-center">
+    <% if @chat.present? %>
+      <%= @chat.name %>
+    <% else %>
+      <%= link_to new_chat_path, data: { turbo_frame: "modal" }, class: "btn btn-ghost text-xl" do %>
+        <span class="text-base sm:text-sm">Start Conversation</span>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="navbar-end">
+    <button class="btn btn-ghost btn-circle">
+      <div class="indicator">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+      </div>
+    </button>
+  </div>
+</div>
