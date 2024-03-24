@@ -18,4 +18,7 @@ class Chat < ApplicationRecord
   broadcasts_to ->(chat) { "chats" }, inserts_by: :prepend
 
   validates :name, presence: true
+
+  scope :with_users, -> { includes(:users) }
+  scope :ordered, -> { order(created_at: :desc) }
 end
