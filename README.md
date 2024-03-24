@@ -1,24 +1,11 @@
-# README
+# Live Chat App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## TODO
+- [ ] Users should be able to sign up and be authenticated
+- [ ] Users should have a display name
+- [ ] Users should be able to join and leave chat rooms
+- [ ] Chat rooms can have many users at a time
+- [ ] Users can send message to chat rooms
+- [ ] Messages should be real time
+- [ ] Messages should contain text
+- [ ] Messages should be persisted in a database
