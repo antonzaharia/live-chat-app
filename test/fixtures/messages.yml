@@ -2,10 +2,15 @@
 
 one:
   content: MyText
-  user: one
+  user: anton
   chat: one
 
 two:
   content: MyText
-  user: two
+  user: jim
+  chat: one
+
+three:
+  content: MyText
+  user: anton
   chat: two
