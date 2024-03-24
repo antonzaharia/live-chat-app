@@ -1,35 +1,60 @@
-<h1>Sign up</h1>
+  <div class="flex justify-center flex-col items-center w-full">
+    <%= form_with(url: sign_up_path, class: "min-w-[20rem]", data: { turbo: false }) do |form| %>
+      <h1 class="text-2xl lg:mt-16 text-left w-full">Sign up</h1>
+      <p class="text-sm mb-5 text-assista-300">Enter your email and password to register.</p>
 
-<%= form_with(url: sign_up_path) do |form| %>
-  <% if @user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% @user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+      <div class="form-control w-full">
+        <%= form.label :name, class: "label" do %>
+          <span class="label-text">Name</span>
         <% end %>
-      </ul>
+        <%= form.text_field :name, value: @user.name, class: "input input-bordered w-full", required: true, autofocus: true, autocomplete: "name" %>
+      </div>
+
+      <div class="form-control w-full">
+        <%= form.label :email, class: "label" do %>
+          <span class="label-text">Email</span>
+        <% end %>
+        <%= form.email_field :email, value: @user.email, class: "input input-bordered w-full", required: true, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form-control w-full">
+        <%= form.label :password, class: "label" do %>
+          <span class="label-text">Password</span>
+        <% end %>
+        <%= form.password_field :password, class: "input input-bordered w-full", required: true, autocomplete: "new-password" %>
+        <%= form.label :password, class: "label" do %>
+          <span class="label-text-alt"></span>
+          <span class="label-text-alt">4 characters minimum.</span>
+        <% end %>
+      </div>
+
+      <div class="form-control w-full">
+        <%= form.label :password_confirmation, class: "label" do %>
+          <span class="label-text">Password confirmation</span>
+        <% end %>
+        <%= form.password_field :password_confirmation, class: "input input-bordered w-full", required: true, autocomplete: "new-password" %>
+      </div>
+
+      <% if @user.errors.any? %>
+        <div class="flex flex-col gap-1 mt-3">
+          <% @user.errors.each do |error| %>
+            <div class="alert alert-error shadow-lg flex-col text-sm p-3 rounded-lg">
+              <%= error.full_message %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="form-control w-full mt-5">
+        <%= form.submit "Sign Up", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <br />
+
+    <div class="flex flex-col items-center gap-2 mt-5">
+      <p>Already have an account?</p>
+      <%= link_to "Sign in", sign_in_path, class: "link" %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.email_field :email, value: @user.email, required: true, autofocus: true, autocomplete: "email" %>
   </div>
-
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.password_field :password, required: true, autocomplete: "new-password" %>
-    <div>12 characters minimum.</div>
-  </div>
-
-  <div>
-    <%= form.label :password_confirmation, style: "display: block" %>
-    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
-  </div>
-
-  <div>
-    <%= form.submit "Sign up" %>
-  </div>
-<% end %>
+  
