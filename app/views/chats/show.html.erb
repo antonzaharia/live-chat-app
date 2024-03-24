@@ -1,0 +1,21 @@
+<section>
+  <%= turbo_frame_tag dom_id(@chat, :form) do %>
+    <%= render partial: "messages/form", locals: { chat: @chat, message: @chat.messages.new } %>
+  <% end %>
+
+  <%= turbo_stream_from dom_id(@chat, :messages) %>
+
+  <%= turbo_frame_tag dom_id(@chat, :messages) do %>
+    <% @chat.messages.order(created_at: :desc).each do |message| %>
+      <%= render partial: 'messages/message', locals: { message: message } %>
+    <% end %>
+  <% end %>
+</section>
+
+<div class="fixed bottom-4 left-4">
+  <%= button_to 'Leave Conversation', user_chat_path(@user_chat),
+    method: :delete,
+    data: { turbo: false },
+    class: 'bg-gray-100 hover:bg-gray-200 text-red-500 py-2 px-4 rounded-full shadow-lg text-xs'
+  %>
+</div>
