@@ -1,0 +1,17 @@
+<div class="w-full p-2 pb-4">
+  <%= form_for [chat, message], class: "relative w-full" do |form| %>
+    <div class="w-full">
+      <div class="flex justify-center mt-0 w-full">
+        <div class="flex gap-2 w-full  max-w-3xl">
+          <%= form.text_field :content, required: true, class: "block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+
+          <%= form.button(type: 'submit', class: "btn btn-primary rounded-lg") do %>
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.9472 9.3944C16.286 9.225 16.5 8.8788 16.5 8.5C16.5 8.12124 16.286 7.77498 15.9472 7.60558L1.9472 0.605582C1.5925 0.428232 1.1665 0.477242 0.861401 0.730502C0.556201 0.983762 0.429501 1.39342 0.5385 1.77473L1.967 6.77472C2.0897 7.20402 2.4821 7.5 2.9286 7.5H7.5C8.0523 7.5 8.5 7.94772 8.5 8.5C8.5 9.0523 8.0523 9.5 7.5 9.5L2.9286 9.5C2.4821 9.5 2.0897 9.796 1.967 10.2253L0.5385 15.2253C0.429501 15.6066 0.556201 16.0163 0.861401 16.2695C1.1665 16.5228 1.5925 16.5718 1.9472 16.3944L15.9472 9.3944Z" fill="white"/>
+            </svg>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
