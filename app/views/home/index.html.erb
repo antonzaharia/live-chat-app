@@ -7,4 +7,9 @@
 <% end %>
 
 <section>
+  <%= turbo_stream_from "chats" %>
+
+  <%= turbo_frame_tag "chats" do %>
+    <%= render @chats %>
+  <% end %>
 </section>

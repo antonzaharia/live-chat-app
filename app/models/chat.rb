@@ -15,5 +15,7 @@ class Chat < ApplicationRecord
 
   accepts_nested_attributes_for :user_chats, :messages
 
+  broadcasts_to ->(chat) { "chats" }, inserts_by: :prepend
+
   validates :name, presence: true
 end
