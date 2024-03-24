@@ -1,0 +1,16 @@
+<% if message.persisted? %>
+  <%= turbo_frame_tag dom_id(message) do %>
+    <div class="chat chat-start msg-<%= message.user.id %>">
+      <div class="chat-image avatar placeholder avatar-<%= message.user.id %>">
+        <div class="bg-neutral text-neutral-content w-10 rounded-full">
+          <span><%= message.user.icon_text %></span>
+        </div>
+      </div>
+      <div class="chat-header header-<%= message.user.id %>">
+        <%= message.user.email %>
+        <time class="text-xs opacity-50"><%= message.created_at.strftime('%I:%M%p') %></time>
+      </div>
+      <div class="chat-bubble chat-bubble-info content-<%= message.user.id %>"><%= message.content %></div>
+    </div>
+  <% end %>
+<% end %>

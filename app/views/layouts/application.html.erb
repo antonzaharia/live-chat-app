@@ -10,6 +10,31 @@
     <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css", "data-turbo-track": "reload" %>
 
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <style>
+      <% user_id = Current.user&.id %>
+      <%= ".msg-#{user_id}" %> {
+        place-items: end !important;
+        grid-template-columns: 1fr auto !important;
+      }
+      <%= ".content-#{user_id}" %> {
+        background-color: #7A7A7A !important;
+        color: #1D1D1D !important;
+        grid-column-start: 1 !important;
+        grid-column-start: 1;
+        border-end-end-radius: 0;
+      }
+      <%= ".content-#{user_id}:before" %> {
+        mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='3' height='3'%3E%3Cpath d='M0 3h3C2 3 0 1 0 0'/%3E%3C/svg%3E") !important;
+        inset-inline-start: 99.9% !important;
+      }
+      <%= ".avatar-#{user_id}" %> {
+        grid-column-start: 2 !important;
+      }
+      <%= ".header-#{user_id}" %> {
+        grid-column-start: 1 !important;
+      }
+    </style>
   </head>
 
   <body class="container mx-auto">

@@ -1,0 +1,3 @@
+<%= turbo_stream.update dom_id(@chat, :form) do %>
+  <%= render partial: "messages/form", locals: { chat: @chat, message: @chat.messages.new } %>
+<% end %>
