@@ -9,3 +9,26 @@
 - [ ] Messages should be real time
 - [ ] Messages should contain text
 - [ ] Messages should be persisted in a database
+
+
+## Data Model
+
+### User
+  - id
+  - email
+  - name
+  - (...)
+
+### UserChat
+  - user_id (foreign key referencing User.id)
+  - chat_id (foreign key referencing Chat.id)
+
+### Chat
+  - id
+  - name
+
+### Message
+  - id
+  - content
+  - user_id (foreign key referencing User.id)
+  - chat_id (foreign key referencing Chat.id)
