@@ -1,7 +1,7 @@
 # Live Chat App
 
 ## TODO
-- [ ] Users should be able to sign up and be authenticated
+- [x] Users should be able to sign up and be authenticated
 - [ ] Users should have a display name
 - [ ] Users should be able to join and leave chat rooms
 - [ ] Chat rooms can have many users at a time
