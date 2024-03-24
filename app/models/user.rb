@@ -1,4 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  verified        :boolean          default(FALSE), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  name            :string
+#
+# Model representing a user of the chat system.
 class User < ApplicationRecord
+  has_many :messages
+  has_many :user_chats
+  has_many :chats, through: :user_chats
+
   has_secure_password
 
   generates_token_for :email_verification, expires_in: 2.days do
